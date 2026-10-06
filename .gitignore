@@ -1,0 +1,31 @@
+# --- R ---
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+.Renviron
+.Rproj.user/
+
+# R package build artifacts
+*.tar.gz
+*.Rcheck/
+
+# --- OS cruft ---
+.DS_Store
+.AppleDouble
+._*
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# --- Editors / IDEs ---
+.vscode/
+.idea/
+*.swp
+*~
+
+# --- Shinylive build output ---
+# The exported `site/` folder IS what GitHub Pages serves, so by default it is
+# committed (not ignored). Uncomment the next line ONLY if you build `site/`
+# in CI (e.g. a GitHub Actions workflow) instead of committing it:
+# /site/
