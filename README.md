@@ -9,7 +9,7 @@ visitor's browser. **No R installation, no server, no account.**
 Built as a hands-on teaching app for the SCCS-NY 2026 workshop
 *"From Photos to Spatial Pattern: Large-Area Imaging for Coral Reef Conservation."*
 
-🔗 **Live demo:** https://YOUR-USERNAME.github.io/rpn-spatial-pattern/
+🔗 **Live demo:** https://jjherlan.github.io/rpn-spatial/
 
 <!-- Add a screenshot once deployed:
 ![App screenshot](docs/screenshot.png)
@@ -66,7 +66,7 @@ This writes a self-contained static site to `site/`.
    (otherwise GitHub's Jekyll step strips files the app needs).
 2. Push the **contents** of `site/` to this repo (so `index.html` is at the root).
 3. **Settings → Pages → Source: Deploy from a branch → `main` / `/ (root)`.**
-4. Your app goes live at `https://YOUR-USERNAME.github.io/rpn-spatial-pattern/`.
+4. Your app goes live at `https://jjherlan.github.io/rpn-spatial/`.
 
 Shinylive ships a service worker that supplies the cross-origin isolation WebR
 needs, so it works on GitHub Pages even though Pages can't set custom HTTP
@@ -86,7 +86,7 @@ photomosaics, one file per reef site.
 ## Repository structure
 
 ```
-rpn-spatial-pattern/
+rpn-spatial/
 ├── rpn-spatial-local/     # the R app + data (run locally or export with shinylive)
 │   ├── app.R
 │   ├── ana.csv  man.csv  vhu.csv

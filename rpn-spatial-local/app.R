@@ -1,10 +1,18 @@
 # =====================================================================
 # Rapa Nui coral spatial pattern — Pocillopora colony dispersion
 # Shinylive (runs entirely in the browser via WebR — no install, no server)
-# Proof-of-concept for SCCS-NY 2026 hands-on workshop.
-# Data: pre-extracted, size-filtered colony centroids (x, y in metres)
-#       from manual segmentation of large-area-imaging orthomosaics.
-#       Three reef sites along a wave-exposure gradient (Herlan et al., ch.2).
+# Hands-on app for the SCCS-NY 2026 workshop.
+#
+# Two modes:
+#   * Real reef data  — size-filtered colony centroids from large-area
+#                       imaging at three Rapa Nui sites (Herlan et al. 2026).
+#   * Simulation      — an idealized sandbox: set the number of colonies and
+#                       two environmental knobs (wave exposure, structural
+#                       complexity); clustering rises with both. This is a
+#                       hypothesis to explore, NOT the Rapa Nui result.
+#
+# Primary dispersion metric = variance-to-mean ratio (VMR), as in the paper;
+# Clark-Evans shown as a complementary nearest-neighbour view.
 # =====================================================================
 
 library(shiny)
@@ -24,30 +32,76 @@ AREA <- 250
 
 site_label <- function(file) names(sites)[match(file, sites)]
 
+# --- Idealized cluster generator -------------------------------------
+# clus in [0,1]: 0 = complete spatial randomness, 1 = tight clusters.
+# Exactly N points placed in the 10 x 25 m window (rejection-sampled).
+simulate_colonies <- function(N, clus, seed = 1) {
+  set.seed(seed)
+  if (N <= 0) return(ppp(numeric(0), numeric(0), window = WIN))
+  if (clus < 0.04) {                                   # ~CSR
+    return(ppp(runif(N, 0, 10), runif(N, 0, 25), window = WIN))
+  }
+  nparents <- max(3, round(N * (1 - clus) * 0.30))      # fewer parents = more clustered
+  nparents <- min(nparents, N)
+  px <- runif(nparents, 0, 10); py <- runif(nparents, 0, 25)
+  pid <- sample(seq_len(nparents), N, replace = TRUE)
+  sdx <- 0.15 + (1 - clus) * 1.50                       # spread shrinks as clus rises
+  sdy <- sdx * 2.2
+  x <- numeric(N); y <- numeric(N)
+  for (i in seq_len(N)) {
+    repeat {
+      xi <- rnorm(1, px[pid[i]], sdx); yi <- rnorm(1, py[pid[i]], sdy)
+      if (xi >= 0 && xi <= 10 && yi >= 0 && yi <= 25) break
+    }
+    x[i] <- xi; y[i] <- yi
+  }
+  ppp(x, y, window = WIN)
+}
+
 # --- UI --------------------------------------------------------------
 ui <- fluidPage(
   tags$head(tags$style(HTML(
     ".well{background:#f4f8f5} h4{color:#1b5e3f;margin-top:0}"))),
   titlePanel("Rapa Nui coral spatial pattern — Pocillopora dispersion"),
-  helpText("From photos to spatial pattern: each point is a coral colony extracted",
-           "from a segmented large-area-imaging orthomosaic. Pick a site, then ask:",
-           "are the colonies clustered, random, or over-dispersed — and how does that",
-           "change along the wave-exposure gradient?"),
+  helpText("Each point is a coral colony. Explore the real reef data, or switch to the",
+           "simulation sandbox to build your own pattern. Then read the dispersion",
+           "statistics and the distance function to decide: clustered, random, or over-dispersed?"),
   sidebarLayout(
     sidebarPanel(
-      selectInput("site", "Reef site (wave-exposure gradient)", choices = sites),
+      radioButtons("mode", "Data",
+                   c("Real reef data" = "real", "Simulation sandbox" = "sim"),
+                   inline = TRUE),
       tags$hr(),
-      h4("Quadrat CSR test"),
-      sliderInput("nx", "Quadrats across plot width (x)",  2, 10, 4),
-      sliderInput("ny", "Quadrats down plot length (y)",   2, 20, 10),
+
+      conditionalPanel(
+        "input.mode == 'real'",
+        selectInput("site", "Reef site (wave-exposure gradient)", choices = sites)
+      ),
+      conditionalPanel(
+        "input.mode == 'sim'",
+        h4("Build a pattern"),
+        sliderInput("Nsim", "Number of colonies", min = 0, max = 500, value = 150, step = 10),
+        sliderInput("exposure", "Wave exposure", min = 0, max = 100, value = 50),
+        sliderInput("complexity", "Structural complexity", min = 0, max = 100, value = 50),
+        actionButton("resim", "Resample", class = "btn-default"),
+        helpText("Idealized sandbox: clustering rises with exposure AND complexity ",
+                 "— a hypothesis to explore, not the Rapa Nui result.")
+      ),
       tags$hr(),
+
+      h4("Dispersion (quadrats)"),
+      helpText("Keep 10 × 25 to reproduce the paper's 250 one-m² cells."),
+      sliderInput("nx", "Quadrats across plot width (x)",  2, 12, 10),
+      sliderInput("ny", "Quadrats down plot length (y)",   2, 30, 25),
+      tags$hr(),
+
       h4("Distance function + CSR envelope"),
       radioButtons("fun", "Function",
                    c("L-function  L(r)" = "L", "Pair correlation  g(r)" = "pcf")),
       sliderInput("rmax", "Max distance r (m)", 0.5, 5, 2.5, step = 0.5),
       sliderInput("nsim", "CSR simulations (envelope)", 0, 199, 39, step = 10),
       conditionalPanel(
-        "input.site == 'vhu.csv'",
+        "input.mode == 'real' && input.site == 'vhu.csv'",
         checkboxInput("sub",
           "Subsample Vaihu to 800 colonies (speeds up envelopes)", TRUE)),
       actionButton("go", "Run distance function", class = "btn-primary"),
@@ -68,16 +122,33 @@ ui <- fluidPage(
 # --- Server ----------------------------------------------------------
 server <- function(input, output, session) {
 
-  # full point pattern for the selected site
+  # reseed the simulation when "Resample" is clicked
+  seedval <- reactiveVal(1)
+  observeEvent(input$resim, seedval(seedval() + 1))
+
+  # current point pattern (real or simulated)
   pp <- reactive({
-    df <- read.csv(input$site)
-    ppp(df$x, df$y, window = WIN)
+    if (input$mode == "sim") {
+      clus <- (input$exposure + input$complexity) / 200
+      simulate_colonies(input$Nsim, clus, seed = 1000 + seedval())
+    } else {
+      df <- read.csv(input$site)
+      ppp(df$x, df$y, window = WIN)
+    }
   })
 
-  # pattern used for the (heavier) envelope — optionally subsampled for Vaihu
+  # label describing the current pattern
+  cur_label <- reactive({
+    if (input$mode == "sim")
+      sprintf("Simulation — exposure %d, complexity %d", input$exposure, input$complexity)
+    else site_label(input$site)
+  })
+
+  # pattern used for the (heavier) envelope — optionally subsampled for real Vaihu
   ppUse <- reactive({
     X <- pp()
-    if (isTRUE(input$sub) && input$site == "vhu.csv" && npoints(X) > 800) {
+    if (input$mode == "real" && isTRUE(input$sub) &&
+        input$site == "vhu.csv" && npoints(X) > 800) {
       set.seed(42)
       X <- X[sample(npoints(X), 800)]
     }
@@ -86,39 +157,59 @@ server <- function(input, output, session) {
 
   output$map <- renderPlot({
     X <- pp()
-    plot(X, main = paste0(site_label(input$site), "   (n = ", npoints(X), ")"),
-         pch = 19, cex = 0.45, cols = "#1b7837")
+    col <- if (input$mode == "sim") "#b5482f" else "#1b7837"
+    plot(X, main = paste0(cur_label(), "   (n = ", npoints(X), ")"),
+         pch = 19, cex = 0.5, cols = col)
     axis(1); axis(2)
     title(xlab = "x (m)", ylab = "y (m)")
   })
 
   output$summary <- renderPrint({
-    X   <- pp()
-    lam <- intensity(X)
-    ce  <- clarkevans(X)[["naive"]]
-    cet <- clarkevans.test(X, alternative = "two.sided", nsim = 99)
-    qt  <- quadrat.test(X, nx = input$nx, ny = input$ny)
-    nnd <- nndist(X)
-    verdict <- if (ce < 1) "CLUSTERED (aggregated)" else
-               if (ce > 1) "REGULAR (over-dispersed)" else "RANDOM"
-
-    cat("Site:      ", site_label(input$site), "\n")
+    X <- pp()
+    cat("Pattern:   ", cur_label(), "\n")
     cat("Colonies:  ", npoints(X), "\n")
     cat("Plot:       10 x 25 m  (250 m^2)\n")
-    cat(sprintf("Intensity:  %.3f colonies / m^2\n", lam))
-    cat(sprintf("Mean nearest-neighbour distance: %.3f m\n\n", mean(nnd)))
-    cat("-- Clark-Evans aggregation index --\n")
-    cat(sprintf("  R = %.3f  ->  %s\n", ce, verdict))
-    cat(sprintf("  test p-value (two-sided, 99 sims) = %.4g\n\n", cet$p.value))
-    cat(sprintf("-- Quadrat chi-square test of CSR (%d x %d grid) --\n",
-                input$nx, input$ny))
-    cat(sprintf("  chi-sq = %.1f,  p-value = %.4g\n", qt$statistic, qt$p.value))
-    cat("  (small p = significant departure from complete spatial randomness)\n")
+    if (npoints(X) < 5) {
+      cat("\n(n is too small to analyse — add more colonies.)\n")
+      return(invisible())
+    }
+    lam   <- intensity(X)
+    ncell <- input$nx * input$ny
+    qc    <- as.numeric(quadratcount(X, nx = input$nx, ny = input$ny))
+    vmr   <- var(qc) / mean(qc)
+    qt    <- suppressWarnings(quadrat.test(X, nx = input$nx, ny = input$ny))
+    ce    <- clarkevans(X)[["naive"]]
+    cet   <- suppressWarnings(clarkevans.test(X, alternative = "two.sided", nsim = 99))
+    nnd   <- nndist(X)
+
+    vmr_verdict <- if (vmr > 1) "CLUSTERED (aggregated)" else
+                   if (vmr < 1) "REGULAR (over-dispersed)" else "RANDOM"
+    ce_verdict  <- if (ce < 1) "clustered" else
+                   if (ce > 1) "over-dispersed" else "random"
+
+    cat(sprintf("Intensity:  %.3f colonies / m^2\n\n", lam))
+    cat("====  DISPERSION  —  variance-to-mean ratio (VMR)  ====\n")
+    cat(sprintf("  VMR = %.2f   over %d quadrats (%d x %d grid)\n",
+                vmr, ncell, input$nx, input$ny))
+    cat(sprintf("  ->  %s\n", vmr_verdict))
+    cat(sprintf("  Quadrat chi-square test of CSR:  chi-sq = %.1f,  p = %.4g\n",
+                qt$statistic, qt$p.value))
+    cat("  (VMR > 1 = clustered; small p = departs from randomness)\n\n")
+
+    cat("----  Nearest-neighbour view: Clark-Evans index  ----\n")
+    cat(sprintf("  R = %.3f   (%s at nearest-neighbour scale)\n", ce, ce_verdict))
+    cat(sprintf("  Mean nearest-neighbour distance = %.3f m;  test p = %.4g\n",
+                mean(nnd), cet$p.value))
+    cat("  Note: R and VMR can disagree — they measure different scales.\n")
+    cat("  At exposed Vaihu, R reads over-dispersed (tight local packing)\n")
+    cat("  while VMR reads clustered (plot-scale patchiness). The paper uses VMR.\n")
   })
 
   # envelope computed only when the button is pressed
   env <- eventReactive(input$go, {
     X   <- ppUse()
+    validate(need(npoints(X) >= 10,
+                  "Need at least ~10 colonies for a distance function — raise the count."))
     rr  <- seq(0, input$rmax, length.out = 200)
     fun <- if (input$fun == "L") Lest else pcf
     if (input$nsim > 0) {
