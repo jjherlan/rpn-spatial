@@ -10,6 +10,7 @@ Built as a hands-on teaching app for the SCCS-NY 2026 workshop
 *"From Photos to Spatial Pattern: Large-Area Imaging for Coral Reef Conservation."*
 
 🔗 **Live demo:** https://jjherlan.github.io/rpn-spatial/
+📖 **User's manual:** [USER_MANUAL.md](USER_MANUAL.md) · [PDF](USER_MANUAL.pdf)
 
 <!-- Add a screenshot once deployed:
 ![App screenshot](docs/screenshot.png)
@@ -18,7 +19,7 @@ Built as a hands-on teaching app for the SCCS-NY 2026 workshop
 ## What it does
 
 Each point is a coral colony extracted from a segmented large-area-imaging
-orthomosaic of a 10 × 25 m (250 m²) reef plot. Pick a site and the app asks:
+2D orthoprojection of a 10 × 25 m (250 m²) reef plot. Pick a site and the app asks:
 are the colonies **clustered, random, or over-dispersed** — and how does that
 change along a wave-exposure gradient?
 
@@ -77,11 +78,11 @@ fully in-browser and works offline.
 ## Data
 
 `ana.csv`, `man.csv`, `vhu.csv` — size-filtered *Pocillopora* colony centroids
-(columns `x`, `y`, in metres) from manual segmentation of orthorectified
-photomosaics, one file per reef site.
+(columns `x`, `y` in metres, plus `area_m2`, colony area in m²) from manual
+segmentation of 2D orthoprojections, one file per reef site. Colony areas
+are used by the neighbourhood-overlap tool; see the user's manual (Section 13)
+for how they were matched.
 
-> **Note:** these files contain colony *locations* only (no colony area), so the
-> app reports intensity/density rather than percent cover.
 
 ## Repository structure
 
