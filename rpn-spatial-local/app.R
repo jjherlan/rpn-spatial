@@ -238,6 +238,11 @@ overlap_metrics <- function(X, r, b) {
 }
 
 # --- UI --------------------------------------------------------------
+# The manual is a separate page on the same site (rendered from manual-src/USER_MANUAL.qmd),
+# so it can be updated without re-exporting the app.
+MANUAL_URL <- "https://jjherlan.github.io/rpn-spatial/manual.html"
+MANUAL_PDF <- "https://jjherlan.github.io/rpn-spatial/USER_MANUAL.pdf"
+
 ui <- fluidPage(
   tags$head(tags$style(HTML(
     ".well{background:#f4f8f5} h4{color:#1b5e3f;margin-top:0}"))),
@@ -246,6 +251,11 @@ ui <- fluidPage(
            "simulation sandbox to build your own pattern or sample from a candidate",
            "process model. Then read the dispersion statistics and the distance function",
            "to decide: clustered, random, or over-dispersed?"),
+  tags$p(style = "margin-top:-4px",
+         tags$a(href = MANUAL_URL, target = "_blank", rel = "noopener",
+                HTML("&#128214; User&rsquo;s manual")),
+         " (opens in a new tab) · ",
+         tags$a(href = MANUAL_PDF, target = "_blank", rel = "noopener", "PDF")),
   sidebarLayout(
     sidebarPanel(
       radioButtons("mode", "Data",
@@ -336,7 +346,15 @@ ui <- fluidPage(
         tabPanel("Neighbourhood overlap",
                  plotOutput("ovmap", height = "520px"),
                  verbatimTextOutput("ovsummary"),
-                 plotOutput("ovnull", height = "240px"))
+                 plotOutput("ovnull", height = "240px")),
+        tabPanel("User's manual",
+                 tags$p(style = "margin-top:10px",
+                        "The full manual, also available ",
+                        tags$a(href = MANUAL_URL, target = "_blank", rel = "noopener", "in its own tab"),
+                        " and as a ",
+                        tags$a(href = MANUAL_PDF, target = "_blank", rel = "noopener", "PDF"), "."),
+                 tags$iframe(src = MANUAL_URL, title = "User's manual",
+                             style = "width:100%; height:80vh; border:1px solid #cfe3d6; border-radius:4px;"))
       )
     )
   )

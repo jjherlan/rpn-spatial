@@ -1,0 +1,8 @@
+# Quarto render outputs (the published copies live in the repository root)
+manual.html
+USER_MANUAL.pdf
+USER_MANUAL.md
+*_files/
+*_cache/
+.quarto/
+manual/gen-*.pdf

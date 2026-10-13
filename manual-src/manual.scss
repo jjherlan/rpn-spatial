@@ -1,0 +1,17 @@
+/*-- scss:defaults --*/
+$primary: #1b7837;
+$link-color: #1b6b45;
+$font-size-root: 16px;
+$headings-color: #1b5e3f;
+/*-- scss:rules --*/
+h1.title { font-size: 2.1rem; }
+.subtitle { color: #555; }
+#title-block-header { border-left: 6px solid $primary; padding-left: 1rem; margin-bottom: 1.5rem; }
+h1:not(.title) { margin-top: 2.5rem; padding-bottom: .3rem; border-bottom: 2px solid $primary; font-size: 1.8rem; }
+h2 { margin-top: 2rem; padding-bottom: .2rem; border-bottom: 1px solid rgba(27,120,55,.25); font-size: 1.45rem; }
+h3 { margin-top: 1.4rem; font-size: 1.15rem; }
+table { font-size: .92rem; }
+thead th { background: rgba(27,120,55,.12); }
+.figure img, p img { max-width: 100%; height: auto; }
+.sidebar nav[role="doc-toc"] ul > li > a { padding-top: .15rem; padding-bottom: .15rem; }
+@media print { #quarto-sidebar, #TOC { display: none; } }

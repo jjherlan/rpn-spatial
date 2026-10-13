@@ -10,7 +10,8 @@ Built as a hands-on teaching app for the SCCS-NY 2026 workshop
 *"From Photos to Spatial Pattern: Large-Area Imaging for Coral Reef Conservation."*
 
 🔗 **Live demo:** https://jjherlan.github.io/rpn-spatial/
-📖 **User's manual:** [USER_MANUAL.md](USER_MANUAL.md) · [PDF](USER_MANUAL.pdf)
+📖 **User's manual:** [web version](https://jjherlan.github.io/rpn-spatial/manual.html) (also the *User's manual* tab in the app) · [PDF](USER_MANUAL.pdf) · [Markdown](USER_MANUAL.md)  
+🎥 **3D models (Viscore fly-throughs):** [Anakena](https://youtu.be/dbPJ7yBsVIc) · [Manavai](https://youtu.be/qbbIMvxGLdo) · [Vaihu](https://youtu.be/OaPMKxSIwd8)
 
 <!-- Add a screenshot once deployed:
 ![App screenshot](docs/screenshot.png)
@@ -75,6 +76,22 @@ headers. Make sure the whole `shinylive/` folder and `shinylive-sw.js` are
 pushed. First load boots WebR and loads the bundled packages; after that it runs
 fully in-browser and works offline.
 
+## Rebuild the user's manual
+
+The manual is written in [Quarto](https://quarto.org). Its site-value tables and
+simulation figure are computed from `rpn-spatial-local/app.R` and the CSVs at
+render time, so they always match the app.
+
+```bash
+cd manual-src
+quarto render USER_MANUAL.qmd            # needs R with knitr, rmarkdown, spatstat.geom, spatstat.explore
+cp manual.html USER_MANUAL.pdf USER_MANUAL.md ..
+cp manual/gen-*.png ../manual/
+```
+
+The app's *User's manual* tab loads the live `manual.html`, so manual-only
+changes don't need a Shinylive re-export.
+
 ## Data
 
 `ana.csv`, `man.csv`, `vhu.csv` — size-filtered *Pocillopora* colony centroids
@@ -92,6 +109,13 @@ rpn-spatial/
 │   ├── app.R
 │   ├── ana.csv  man.csv  vhu.csv
 │   └── README.md
+├── manual-src/            # the user's manual, written in Quarto
+│   ├── USER_MANUAL.qmd    #   source: renders manual.html, USER_MANUAL.pdf and USER_MANUAL.md
+│   ├── manual.scss        #   web styling
+│   └── manual/            #   figures
+├── manual.html            # published web manual (rendered from manual-src/)
+├── USER_MANUAL.pdf  USER_MANUAL.md   # PDF and Markdown versions of the manual
+├── manual/                # figures used by USER_MANUAL.md
 ├── index.html             # exported Shinylive site (after `shinylive::export`)
 ├── shinylive/             #   "
 ├── shinylive-sw.js        #   "
