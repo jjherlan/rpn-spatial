@@ -105,10 +105,10 @@ The number of colonies stays fixed as you slide (at the far regular end a few ma
 |---|---|---|
 | **Complete spatial randomness (CSR / Poisson)** | The null model: every location equally likely, colonies independent | VMR ≈ 1, R ≈ 1 |
 | **Habitat filtering (inhomogeneous Poisson)** | Density follows the environment. Here intensity falls about four-fold from the bottom (y = 0) to the top (y = 25 m) of the plot, but colonies don't interact | VMR slightly above 1, R ≈ 1 |
-| **Biotic clustering (Thomas cluster process)** | Offspring settle around parent colonies (about 6 per parent, spread about 0.8 m) | VMR > 1, R < 1 |
-| **Both — habitat + clustering (inhomogeneous cluster)** | Clusters whose parents follow the habitat gradient | VMR > 1, R < 1, plus a density gradient |
+| **Biotic clustering (Cauchy cluster process)** | Offspring settle around parent colonies (about 6 per parent; half land within about 0.95 m, a few much farther) | VMR > 1, R < 1 |
+| **Both — habitat + clustering (inhomogeneous Cauchy cluster)** | Clusters whose parents follow the habitat gradient | VMR > 1, R < 1, plus a density gradient |
 
-Here *Number of colonies* sets the **expected** count. These are genuine random processes, so the actual number varies from run to run, and the cluster models often come in somewhat below the target because offspring that fall outside the plot are dropped.
+Here *Number of colonies* sets the **expected** count. These are genuine random processes, so the actual number varies from run to run, and the cluster models usually come in below the target (about 245 when the target is 300) because the heavy-tailed Cauchy kernel scatters some offspring outside the plot, where they are dropped.
 
 The habitat-filtering model is a useful teaching contrast: it can raise VMR above 1 without any clustering, because the quadrats pick up the density gradient. A high VMR alone does not prove that colonies attract each other.
 
@@ -231,7 +231,7 @@ All three sites are **clustered by VMR**, and all three depart significantly fro
 - **Pair correlation g(r):** relative frequency of pairs at distance exactly r; 1 under CSR.
 - **Simulation envelope:** the range of a statistic across many simulated CSR patterns, used as a visual test.
 - **Inhomogeneous Poisson process:** random, non-interacting colonies whose density varies over space (habitat filtering).
-- **Thomas cluster process:** parent locations scattered at random, each surrounded by a Gaussian cloud of offspring (biotic clustering).
+- **Cauchy cluster process:** parent locations scattered at random, each surrounded by a heavy-tailed cloud of offspring: most settle close to the parent, a few land far away (biotic clustering). This is the cluster model fitted in the paper and simulated by the app.
 - **Buffer halo / zone of influence (b):** a band of width b around each colony's footprint representing the space it interacts across.
 
 ---
@@ -275,8 +275,8 @@ All statistics use `spatstat.geom` and `spatstat.explore`. The simulators use on
 
 - *CSR:* Poisson(N) uniform points.
 - *Habitat filtering:* inhomogeneous Poisson by thinning, intensity ∝ exp(1.4 (1 − y / 25)), a roughly 4:1 gradient along the plot.
-- *Biotic clustering (Thomas):* Poisson parents at intensity λ / 6; each parent has Poisson(6) offspring with isotropic Gaussian spread σ = 0.8 m; offspring outside the plot are dropped.
-- *Both:* as Thomas, but parents placed by the habitat-filtering process.
+- *Biotic clustering (Cauchy):* Poisson parents at intensity λ / 6; each parent has Poisson(6) offspring displaced by the isotropic bivariate Cauchy kernel with scale $\omega$ = 0.55 m, the same parametrisation as spatstat's `rCauchy` and `kppm(clusters = "Cauchy")` (each displacement is drawn as a Gaussian with standard deviation $\omega$ divided by the square root of a $\chi^2_1$ draw). The median parent–offspring distance is $\omega\sqrt{3}$ ≈ 0.95 m. Offspring outside the plot are dropped, so at N = 300 the realised count averages about 245.
+- *Both:* as biotic clustering, but parents placed by the habitat-filtering process (an inhomogeneous Cauchy cluster process).
 
 **Seeds.** Simulations are seeded from the Resample counter, so the same settings and the same number of clicks reproduce the same pattern within a session.
 
@@ -452,7 +452,7 @@ $$
 
 where $h_2$ is the density of the vector between two offspring of the same parent.
 
-In the **Cauchy cluster process** used in the paper, offspring follow a bivariate Cauchy density with scale $\omega$:
+In the **Cauchy cluster process** used in the paper (and simulated by the app, with $\omega$ = 0.55 m), offspring follow a bivariate Cauchy density with scale $\omega$:
 
 $$
 h(u) = \frac{1}{2\pi\omega^2}\left(1 + \frac{\lVert u \rVert^2}{\omega^2}\right)^{-3/2}.
@@ -466,7 +466,7 @@ g_{\kappa,\omega}(r) = 1 + \frac{1}{8\pi\kappa\omega^2}\left(1 + \frac{r^2}{4\om
 K_{\kappa,\omega}(r) = \pi r^2 + \frac{1}{\kappa}\left[1 - \left(1 + \frac{r^2}{4\omega^2}\right)^{-1/2}\right].
 $$
 
-The Cauchy kernel is heavy-tailed, so g decays like $r^{-3}$ and a few offspring land far from their parent. Compare the **Thomas** process (Gaussian scatter with standard deviation $\sigma$), used by the app's simulator:
+The Cauchy kernel is heavy-tailed, so g decays like $r^{-3}$ and a few offspring land far from their parent. Compare the **Thomas** process (Gaussian scatter with standard deviation $\sigma$), the other common Neyman–Scott model, whose clusters are tighter and better separated:
 
 $$
 g_{\kappa,\sigma}(r) = 1 + \frac{1}{4\pi\kappa\sigma^2}\exp\left(-\frac{r^2}{4\sigma^2}\right).

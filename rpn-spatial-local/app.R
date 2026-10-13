@@ -14,8 +14,8 @@
 #       (2) "Pick the generating process" — simulate from the four
 #             candidate point-process models compared in the manuscript
 #             (Fig. 7 / DCLF): CSR, habitat filtering (inhomogeneous
-#             Poisson), biotic clustering (Thomas cluster process), and
-#             both (an inhomogeneous cluster process).
+#             Poisson), biotic clustering (Cauchy cluster process), and
+#             both (an inhomogeneous Cauchy cluster process).
 #
 # Primary dispersion metric = variance-to-mean ratio (VMR), as in the paper;
 # Clark-Evans shown as a complementary nearest-neighbour view.
@@ -121,15 +121,19 @@ rinhom_pts <- function(m) {
   cbind(x[keep], y[keep])
 }
 
-# Scatter Poisson(mu) Gaussian offspring (sd = sigma) around each parent;
-# offspring falling outside the plot are dropped. Returns a 2-col matrix.
-scatter_offspring <- function(px, py, mu, sigma) {
+# Scatter Poisson(mu) offspring around each parent with a Cauchy kernel
+# (isotropic bivariate t with 1 df, scale omega), the kernel of spatstat's
+# rCauchy / kppm(clusters = "Cauchy") fitted in the paper. Heavy-tailed:
+# most offspring stay close, a few land far away. Offspring falling
+# outside the plot are dropped. Returns a 2-col matrix.
+scatter_offspring <- function(px, py, mu, omega) {
   x <- numeric(0); y <- numeric(0)
   for (i in seq_along(px)) {
     k <- rpois(1, mu)
     if (k > 0) {
-      ox <- px[i] + rnorm(k, 0, sigma)
-      oy <- py[i] + rnorm(k, 0, sigma)
+      w  <- sqrt(rchisq(k, df = 1))           # one draw per offspring -> isotropic
+      ox <- px[i] + rnorm(k, 0, omega) / w
+      oy <- py[i] + rnorm(k, 0, omega) / w
       inside <- ox >= 0 & ox <= 10 & oy >= 0 & oy <= 25
       x <- c(x, ox[inside]); y <- c(y, oy[inside])
     }
@@ -140,7 +144,8 @@ scatter_offspring <- function(px, py, mu, sigma) {
 simulate_process <- function(proc, N, seed = 1) {
   set.seed(seed)
   if (N <= 0) return(ppp(numeric(0), numeric(0), window = WIN))
-  mu <- 6; sigma <- 0.8                       # cluster size / scale (for thomas & both)
+  mu <- 6; omega <- 0.55                      # offspring per parent / Cauchy scale (m)
+                                              # median parent-offspring distance = omega*sqrt(3) ~ 0.95 m
 
   if (proc == "csr") {
     n <- rpois(1, N)
@@ -150,18 +155,18 @@ simulate_process <- function(proc, N, seed = 1) {
     m <- rinhom_pts(N)
     X <- ppp(m[, 1], m[, 2], window = WIN)
 
-  } else if (proc == "thomas") {
+  } else if (proc == "cauchy") {
     kappa <- (N / AREA) / mu                  # parent intensity so kappa*mu = lambda
     np <- rpois(1, kappa * AREA); if (np < 1) np <- 1
     px <- runif(np, 0, 10); py <- runif(np, 0, 25)
-    o  <- scatter_offspring(px, py, mu, sigma)
+    o  <- scatter_offspring(px, py, mu, omega)
     X  <- ppp(o[, 1], o[, 2], window = WIN)
 
-  } else {                                    # "both": inhomogeneous cluster
+  } else {                                    # "both": inhomogeneous Cauchy cluster
     kappa <- (N / AREA) / mu
     par <- rinhom_pts(kappa * AREA)           # parents placed by the habitat gradient
     if (nrow(par) < 1) par <- cbind(runif(1, 0, 10), runif(1, 0, 25))
-    o <- scatter_offspring(par[, 1], par[, 2], mu, sigma)
+    o <- scatter_offspring(par[, 1], par[, 2], mu, omega)
     X <- ppp(o[, 1], o[, 2], window = WIN)
   }
   X
@@ -170,8 +175,8 @@ simulate_process <- function(proc, N, seed = 1) {
 proc_label <- c(
   csr    = "CSR — complete spatial randomness (Poisson)",
   inhom  = "Habitat filtering — inhomogeneous Poisson",
-  thomas = "Biotic clustering — Thomas cluster process",
-  both   = "Both — habitat gradient + clustering"
+  cauchy = "Biotic clustering — Cauchy cluster process",
+  both   = "Both — habitat gradient + Cauchy clustering"
 )
 
 # =====================================================================
@@ -276,12 +281,12 @@ ui <- fluidPage(
           selectInput("proc", "Candidate process model",
             c("Complete spatial randomness (CSR / Poisson)" = "csr",
               "Habitat filtering (inhomogeneous Poisson)"    = "inhom",
-              "Biotic clustering (Thomas cluster process)"   = "thomas",
-              "Both — habitat + clustering (inhom. cluster)" = "both")),
+              "Biotic clustering (Cauchy cluster process)"   = "cauchy",
+              "Both — habitat + clustering (inhom. Cauchy)"  = "both")),
           helpText("The four candidate processes compared in the manuscript (Fig. 7 / ",
                    "DCLF). CSR is the null. Habitat filtering varies intensity with the ",
                    "environment (first-order). Biotic clustering scatters offspring around ",
-                   "parents (second-order). Both layers clustering onto a habitat gradient. ",
+                   "parents with a heavy-tailed Cauchy kernel, as fitted in the paper (second-order). Both layers clustering onto a habitat gradient. ",
                    "Number of colonies sets the expected count; each process is random, so ",
                    "the realised n varies — click Resample.")
         ),
