@@ -67,14 +67,14 @@ is nothing to install, no server and no account.
 
 Each plot was first built as a 3D model (a dense point cloud) and
 explored in Viscore before the 2D map was made. These short fly-throughs
-show the three plots in wave-exposure order; notice how the relief
-flattens from sheltered Anakena to exposed Vaihu.
+show the three plots (surveyed March–April 2015) in wave-exposure order;
+notice how the relief flattens from sheltered Anakena to exposed Vaihu.
 
-| Site | Exposure | Surveyed | Fly-through video |
-|----|----|----|----|
-| Anakena (north) | Sheltered | 11 Sep 2015 | [youtu.be/dbPJ7yBsVIc](https://youtu.be/dbPJ7yBsVIc) |
-| Manavai (west, plot 2) | Moderate | 2 Nov 2015 | [youtu.be/qbbIMvxGLdo](https://youtu.be/qbbIMvxGLdo) |
-| Vaihu (southeast) | Exposed | 18 Apr 2015 | [youtu.be/OaPMKxSIwd8](https://youtu.be/OaPMKxSIwd8) |
+| Site | Exposure | Fly-through video |
+|----|----|----|
+| Anakena (north) | Sheltered | [youtu.be/dbPJ7yBsVIc](https://youtu.be/dbPJ7yBsVIc) |
+| Manavai (west, plot 2) | Moderate | [youtu.be/qbbIMvxGLdo](https://youtu.be/qbbIMvxGLdo) |
+| Vaihu (southeast) | Exposed | [youtu.be/OaPMKxSIwd8](https://youtu.be/OaPMKxSIwd8) |
 
 ## 2. Getting started
 

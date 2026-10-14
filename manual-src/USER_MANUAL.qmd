@@ -101,26 +101,26 @@ The app runs entirely in your web browser. It is written in R with the `spatstat
 
 ### See the 3D models
 
-Each plot was first built as a 3D model (a dense point cloud) and explored in Viscore before the 2D map was made. These short fly-throughs show the three plots in wave-exposure order; notice how the relief flattens from sheltered Anakena to exposed Vaihu.
+Each plot was first built as a 3D model (a dense point cloud) and explored in Viscore before the 2D map was made. These short fly-throughs show the three plots (surveyed March–April 2015) in wave-exposure order; notice how the relief flattens from sheltered Anakena to exposed Vaihu.
 
 ::: {.content-visible when-format="html"}
 :::: {layout-ncol=3}
 ::::: {}
-**Anakena** — north, sheltered (surveyed 11 Sep 2015)
+**Anakena** — north, sheltered
 
 {{< video https://www.youtube.com/embed/dbPJ7yBsVIc title="Anakena 3D model fly-through (Viscore)" aspect-ratio="16x9" >}}
 
 [Watch on YouTube ↗](https://youtu.be/dbPJ7yBsVIc){target="_blank"}
 :::::
 ::::: {}
-**Manavai** — west, moderate, plot 2 (2 Nov 2015)
+**Manavai** — west, moderate (plot 2)
 
 {{< video https://www.youtube.com/embed/qbbIMvxGLdo title="Manavai 3D model fly-through (Viscore)" aspect-ratio="16x9" >}}
 
 [Watch on YouTube ↗](https://youtu.be/qbbIMvxGLdo){target="_blank"}
 :::::
 ::::: {}
-**Vaihu** — southeast, exposed (18 Apr 2015)
+**Vaihu** — southeast, exposed
 
 {{< video https://www.youtube.com/embed/OaPMKxSIwd8 title="Vaihu 3D model fly-through (Viscore)" aspect-ratio="16x9" >}}
 
@@ -130,11 +130,11 @@ Each plot was first built as a 3D model (a dense point cloud) and explored in Vi
 :::
 
 ::: {.content-hidden when-format="html"}
-| Site | Exposure | Surveyed | Fly-through video |
-|---|---|---|---|
-| Anakena (north) | Sheltered | 11 Sep 2015 | [youtu.be/dbPJ7yBsVIc](https://youtu.be/dbPJ7yBsVIc) |
-| Manavai (west, plot 2) | Moderate | 2 Nov 2015 | [youtu.be/qbbIMvxGLdo](https://youtu.be/qbbIMvxGLdo) |
-| Vaihu (southeast) | Exposed | 18 Apr 2015 | [youtu.be/OaPMKxSIwd8](https://youtu.be/OaPMKxSIwd8) |
+| Site | Exposure | Fly-through video |
+|---|---|---|
+| Anakena (north) | Sheltered | [youtu.be/dbPJ7yBsVIc](https://youtu.be/dbPJ7yBsVIc) |
+| Manavai (west, plot 2) | Moderate | [youtu.be/qbbIMvxGLdo](https://youtu.be/qbbIMvxGLdo) |
+| Vaihu (southeast) | Exposed | [youtu.be/OaPMKxSIwd8](https://youtu.be/OaPMKxSIwd8) |
 :::
 
 
