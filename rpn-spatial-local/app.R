@@ -242,6 +242,10 @@ overlap_metrics <- function(X, r, b) {
 # so it can be updated without re-exporting the app.
 MANUAL_URL <- "https://jjherlan.github.io/rpn-spatial/manual.html"
 MANUAL_PDF <- "https://jjherlan.github.io/rpn-spatial/USER_MANUAL.pdf"
+# Feedback pages (rendered from feedback-src/*.qmd). The Google Form and the anonymised
+# summary sheet are configured in feedback-config.json on the site, so no re-export is needed.
+FEEDBACK_URL <- "https://jjherlan.github.io/rpn-spatial/feedback.html"
+FEEDBACK_SUMMARY_URL <- "https://jjherlan.github.io/rpn-spatial/feedback-summary.html"
 
 ui <- fluidPage(
   tags$head(tags$style(HTML(
@@ -255,7 +259,10 @@ ui <- fluidPage(
          tags$a(href = MANUAL_URL, target = "_blank", rel = "noopener",
                 HTML("&#128214; User&rsquo;s manual")),
          " (opens in a new tab) · ",
-         tags$a(href = MANUAL_PDF, target = "_blank", rel = "noopener", "PDF")),
+         tags$a(href = MANUAL_PDF, target = "_blank", rel = "noopener", "PDF"),
+         " · ",
+         tags$a(href = FEEDBACK_URL, target = "_blank", rel = "noopener",
+                HTML("&#128172; Workshop feedback"))),
   sidebarLayout(
     sidebarPanel(
       radioButtons("mode", "Data",
@@ -354,6 +361,15 @@ ui <- fluidPage(
                         " and as a ",
                         tags$a(href = MANUAL_PDF, target = "_blank", rel = "noopener", "PDF"), "."),
                  tags$iframe(src = MANUAL_URL, title = "User's manual",
+                             style = "width:100%; height:80vh; border:1px solid #cfe3d6; border-radius:4px;")),
+        tabPanel("Feedback",
+                 tags$p(style = "margin-top:10px",
+                        "Anonymous workshop feedback and questions. ",
+                        tags$a(href = FEEDBACK_URL, target = "_blank", rel = "noopener", "Open the form in its own tab"),
+                        " · ",
+                        tags$a(href = FEEDBACK_SUMMARY_URL, target = "_blank", rel = "noopener",
+                               "See what participants said (name-blind summary)"), "."),
+                 tags$iframe(src = FEEDBACK_URL, title = "Workshop feedback",
                              style = "width:100%; height:80vh; border:1px solid #cfe3d6; border-radius:4px;"))
       )
     )

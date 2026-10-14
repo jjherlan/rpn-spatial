@@ -1,0 +1,314 @@
+section,kind,code,label,value,count,group
+meta,meta,n_responses,Responses,14,14,
+meta,meta,updated,Last updated,2026-10-14,,
+1. About you,choice,role,Your current role,Undergraduate,0,role
+1. About you,choice,role,Your current role,Graduate student,6,role
+1. About you,choice,role,Your current role,Postdoc,2,role
+1. About you,choice,role,Your current role,Faculty / researcher,0,role
+1. About you,choice,role,Your current role,Agency or NGO practitioner,3,role
+1. About you,choice,role,Your current role,Educator,3,role
+1. About you,choice,role,Your current role,Other,0,role
+1. About you,choice,exp_imaging,"Experience with underwater or reef imaging (photomosaics, SfM, 3D models)",None,3,exp_imaging
+1. About you,choice,exp_imaging,"Experience with underwater or reef imaging (photomosaics, SfM, 3D models)",Some,6,exp_imaging
+1. About you,choice,exp_imaging,"Experience with underwater or reef imaging (photomosaics, SfM, 3D models)",A lot,5,exp_imaging
+1. About you,choice,exp_stats,"Experience with spatial statistics (point patterns, K / g functions)",None,2,exp_stats
+1. About you,choice,exp_stats,"Experience with spatial statistics (point patterns, K / g functions)",Some,9,exp_stats
+1. About you,choice,exp_stats,"Experience with spatial statistics (point patterns, K / g functions)",A lot,3,exp_stats
+1. About you,choice,exp_r,Experience with R,None,5,exp_r
+1. About you,choice,exp_r,Experience with R,Some,7,exp_r
+1. About you,choice,exp_r,Experience with R,A lot,2,exp_r
+1. About you,choice,reefs,Have you worked on coral reefs or other benthic habitats?,No,5,reefs
+1. About you,choice,reefs,Have you worked on coral reefs or other benthic habitats?,"Yes, in the field",5,reefs
+1. About you,choice,reefs,Have you worked on coral reefs or other benthic habitats?,"Yes, with data only",4,reefs
+2. The workshop overall,rating,ov_1,The workshop met the goals stated at the start,1,0,ov
+2. The workshop overall,rating,ov_1,The workshop met the goals stated at the start,2,5,ov
+2. The workshop overall,rating,ov_1,The workshop met the goals stated at the start,3,2,ov
+2. The workshop overall,rating,ov_1,The workshop met the goals stated at the start,4,2,ov
+2. The workshop overall,rating,ov_1,The workshop met the goals stated at the start,5,3,ov
+2. The workshop overall,rating,ov_1,The workshop met the goals stated at the start,N/A,0,ov
+2. The workshop overall,rating,ov_2,I can explain how photos become a 3D model and a 2D map of a reef plot,1,0,ov
+2. The workshop overall,rating,ov_2,I can explain how photos become a 3D model and a 2D map of a reef plot,2,2,ov
+2. The workshop overall,rating,ov_2,I can explain how photos become a 3D model and a 2D map of a reef plot,3,2,ov
+2. The workshop overall,rating,ov_2,I can explain how photos become a 3D model and a 2D map of a reef plot,4,5,ov
+2. The workshop overall,rating,ov_2,I can explain how photos become a 3D model and a 2D map of a reef plot,5,2,ov
+2. The workshop overall,rating,ov_2,I can explain how photos become a 3D model and a 2D map of a reef plot,N/A,0,ov
+2. The workshop overall,rating,ov_3,I can tell how many colonies (intensity) apart from how they are arranged (pattern),1,0,ov
+2. The workshop overall,rating,ov_3,I can tell how many colonies (intensity) apart from how they are arranged (pattern),2,1,ov
+2. The workshop overall,rating,ov_3,I can tell how many colonies (intensity) apart from how they are arranged (pattern),3,0,ov
+2. The workshop overall,rating,ov_3,I can tell how many colonies (intensity) apart from how they are arranged (pattern),4,3,ov
+2. The workshop overall,rating,ov_3,I can tell how many colonies (intensity) apart from how they are arranged (pattern),5,9,ov
+2. The workshop overall,rating,ov_3,I can tell how many colonies (intensity) apart from how they are arranged (pattern),N/A,0,ov
+2. The workshop overall,rating,ov_4,"I can read VMR, Clark–Evans R and g(r) and say whether a pattern is clustered, random or over-dispersed",1,0,ov
+2. The workshop overall,rating,ov_4,"I can read VMR, Clark–Evans R and g(r) and say whether a pattern is clustered, random or over-dispersed",2,3,ov
+2. The workshop overall,rating,ov_4,"I can read VMR, Clark–Evans R and g(r) and say whether a pattern is clustered, random or over-dispersed",3,1,ov
+2. The workshop overall,rating,ov_4,"I can read VMR, Clark–Evans R and g(r) and say whether a pattern is clustered, random or over-dispersed",4,2,ov
+2. The workshop overall,rating,ov_4,"I can read VMR, Clark–Evans R and g(r) and say whether a pattern is clustered, random or over-dispersed",5,7,ov
+2. The workshop overall,rating,ov_4,"I can read VMR, Clark–Evans R and g(r) and say whether a pattern is clustered, random or over-dispersed",N/A,0,ov
+2. The workshop overall,rating,ov_5,I understand why different processes can produce similar patterns,1,0,ov
+2. The workshop overall,rating,ov_5,I understand why different processes can produce similar patterns,2,1,ov
+2. The workshop overall,rating,ov_5,I understand why different processes can produce similar patterns,3,2,ov
+2. The workshop overall,rating,ov_5,I understand why different processes can produce similar patterns,4,3,ov
+2. The workshop overall,rating,ov_5,I understand why different processes can produce similar patterns,5,6,ov
+2. The workshop overall,rating,ov_5,I understand why different processes can produce similar patterns,N/A,0,ov
+2. The workshop overall,rating,ov_6,I see how these methods could inform reef monitoring or conservation,1,0,ov
+2. The workshop overall,rating,ov_6,I see how these methods could inform reef monitoring or conservation,2,2,ov
+2. The workshop overall,rating,ov_6,I see how these methods could inform reef monitoring or conservation,3,4,ov
+2. The workshop overall,rating,ov_6,I see how these methods could inform reef monitoring or conservation,4,4,ov
+2. The workshop overall,rating,ov_6,I see how these methods could inform reef monitoring or conservation,5,4,ov
+2. The workshop overall,rating,ov_6,I see how these methods could inform reef monitoring or conservation,N/A,0,ov
+2. The workshop overall,rating,ov_7,The overall length was right,1,0,ov
+2. The workshop overall,rating,ov_7,The overall length was right,2,3,ov
+2. The workshop overall,rating,ov_7,The overall length was right,3,3,ov
+2. The workshop overall,rating,ov_7,The overall length was right,4,2,ov
+2. The workshop overall,rating,ov_7,The overall length was right,5,4,ov
+2. The workshop overall,rating,ov_7,The overall length was right,N/A,0,ov
+2. The workshop overall,rating,ov_8,"The balance of looking, listening and doing was right",1,0,ov
+2. The workshop overall,rating,ov_8,"The balance of looking, listening and doing was right",2,1,ov
+2. The workshop overall,rating,ov_8,"The balance of looking, listening and doing was right",3,2,ov
+2. The workshop overall,rating,ov_8,"The balance of looking, listening and doing was right",4,2,ov
+2. The workshop overall,rating,ov_8,"The balance of looking, listening and doing was right",5,5,ov
+2. The workshop overall,rating,ov_8,"The balance of looking, listening and doing was right",N/A,0,ov
+2. The workshop overall,rating,ov_9,I would recommend this workshop to a colleague,1,0,ov
+2. The workshop overall,rating,ov_9,I would recommend this workshop to a colleague,2,4,ov
+2. The workshop overall,rating,ov_9,I would recommend this workshop to a colleague,3,1,ov
+2. The workshop overall,rating,ov_9,I would recommend this workshop to a colleague,4,0,ov
+2. The workshop overall,rating,ov_9,I would recommend this workshop to a colleague,5,7,ov
+2. The workshop overall,rating,ov_9,I would recommend this workshop to a colleague,N/A,0,ov
+3. Opening observation activity,rating,obs_1,Looking before any statistics helped me engage with the later material,1,0,obs
+3. Opening observation activity,rating,obs_1,Looking before any statistics helped me engage with the later material,2,2,obs
+3. Opening observation activity,rating,obs_1,Looking before any statistics helped me engage with the later material,3,2,obs
+3. Opening observation activity,rating,obs_1,Looking before any statistics helped me engage with the later material,4,2,obs
+3. Opening observation activity,rating,obs_1,Looking before any statistics helped me engage with the later material,5,7,obs
+3. Opening observation activity,rating,obs_1,Looking before any statistics helped me engage with the later material,N/A,0,obs
+3. Opening observation activity,rating,obs_2,The images were clear and varied enough to spark questions,1,0,obs
+3. Opening observation activity,rating,obs_2,The images were clear and varied enough to spark questions,2,0,obs
+3. Opening observation activity,rating,obs_2,The images were clear and varied enough to spark questions,3,2,obs
+3. Opening observation activity,rating,obs_2,The images were clear and varied enough to spark questions,4,3,obs
+3. Opening observation activity,rating,obs_2,The images were clear and varied enough to spark questions,5,8,obs
+3. Opening observation activity,rating,obs_2,The images were clear and varied enough to spark questions,N/A,0,obs
+3. Opening observation activity,rating,obs_3,The activity was the right length (it ran about 15–25 minutes),1,0,obs
+3. Opening observation activity,rating,obs_3,The activity was the right length (it ran about 15–25 minutes),2,2,obs
+3. Opening observation activity,rating,obs_3,The activity was the right length (it ran about 15–25 minutes),3,3,obs
+3. Opening observation activity,rating,obs_3,The activity was the right length (it ran about 15–25 minutes),4,4,obs
+3. Opening observation activity,rating,obs_3,The activity was the right length (it ran about 15–25 minutes),5,4,obs
+3. Opening observation activity,rating,obs_3,The activity was the right length (it ran about 15–25 minutes),N/A,0,obs
+3. Opening observation activity,rating,obs_4,The talk connected back to what we noticed and wondered,1,0,obs
+3. Opening observation activity,rating,obs_4,The talk connected back to what we noticed and wondered,2,2,obs
+3. Opening observation activity,rating,obs_4,The talk connected back to what we noticed and wondered,3,3,obs
+3. Opening observation activity,rating,obs_4,The talk connected back to what we noticed and wondered,4,3,obs
+3. Opening observation activity,rating,obs_4,The talk connected back to what we noticed and wondered,5,5,obs
+3. Opening observation activity,rating,obs_4,The talk connected back to what we noticed and wondered,N/A,0,obs
+4. The talk,rating,talk_1,"The large-area imaging steps (survey, 3D model, 2D map, colony points) were clear",1,0,talk
+4. The talk,rating,talk_1,"The large-area imaging steps (survey, 3D model, 2D map, colony points) were clear",2,1,talk
+4. The talk,rating,talk_1,"The large-area imaging steps (survey, 3D model, 2D map, colony points) were clear",3,4,talk
+4. The talk,rating,talk_1,"The large-area imaging steps (survey, 3D model, 2D map, colony points) were clear",4,6,talk
+4. The talk,rating,talk_1,"The large-area imaging steps (survey, 3D model, 2D map, colony points) were clear",5,2,talk
+4. The talk,rating,talk_1,"The large-area imaging steps (survey, 3D model, 2D map, colony points) were clear",N/A,0,talk
+4. The talk,rating,talk_2,The 3D model fly-through videos helped me understand the reefs,1,0,talk
+4. The talk,rating,talk_2,The 3D model fly-through videos helped me understand the reefs,2,1,talk
+4. The talk,rating,talk_2,The 3D model fly-through videos helped me understand the reefs,3,1,talk
+4. The talk,rating,talk_2,The 3D model fly-through videos helped me understand the reefs,4,5,talk
+4. The talk,rating,talk_2,The 3D model fly-through videos helped me understand the reefs,5,6,talk
+4. The talk,rating,talk_2,The 3D model fly-through videos helped me understand the reefs,N/A,0,talk
+4. The talk,rating,talk_3,"The ""In plain language"" slides made the statistics accessible",1,0,talk
+4. The talk,rating,talk_3,"The ""In plain language"" slides made the statistics accessible",2,0,talk
+4. The talk,rating,talk_3,"The ""In plain language"" slides made the statistics accessible",3,5,talk
+4. The talk,rating,talk_3,"The ""In plain language"" slides made the statistics accessible",4,3,talk
+4. The talk,rating,talk_3,"The ""In plain language"" slides made the statistics accessible",5,5,talk
+4. The talk,rating,talk_3,"The ""In plain language"" slides made the statistics accessible",N/A,0,talk
+4. The talk,rating,talk_4,The technical statistics slides were at the right level for me,1,0,talk
+4. The talk,rating,talk_4,The technical statistics slides were at the right level for me,2,2,talk
+4. The talk,rating,talk_4,The technical statistics slides were at the right level for me,3,1,talk
+4. The talk,rating,talk_4,The technical statistics slides were at the right level for me,4,3,talk
+4. The talk,rating,talk_4,The technical statistics slides were at the right level for me,5,7,talk
+4. The talk,rating,talk_4,The technical statistics slides were at the right level for me,N/A,0,talk
+4. The talk,rating,talk_5,The four candidate processes made sense,1,0,talk
+4. The talk,rating,talk_5,The four candidate processes made sense,2,3,talk
+4. The talk,rating,talk_5,The four candidate processes made sense,3,1,talk
+4. The talk,rating,talk_5,The four candidate processes made sense,4,3,talk
+4. The talk,rating,talk_5,The four candidate processes made sense,5,7,talk
+4. The talk,rating,talk_5,The four candidate processes made sense,N/A,0,talk
+4. The talk,rating,talk_6,"The results (DCLF tests, neighbourhood composition, ""gradient of control"") were convincing",1,0,talk
+4. The talk,rating,talk_6,"The results (DCLF tests, neighbourhood composition, ""gradient of control"") were convincing",2,1,talk
+4. The talk,rating,talk_6,"The results (DCLF tests, neighbourhood composition, ""gradient of control"") were convincing",3,4,talk
+4. The talk,rating,talk_6,"The results (DCLF tests, neighbourhood composition, ""gradient of control"") were convincing",4,2,talk
+4. The talk,rating,talk_6,"The results (DCLF tests, neighbourhood composition, ""gradient of control"") were convincing",5,5,talk
+4. The talk,rating,talk_6,"The results (DCLF tests, neighbourhood composition, ""gradient of control"") were convincing",N/A,0,talk
+4. The talk,rating,talk_7,"The slides were readable (text size, figures, colours)",1,0,talk
+4. The talk,rating,talk_7,"The slides were readable (text size, figures, colours)",2,2,talk
+4. The talk,rating,talk_7,"The slides were readable (text size, figures, colours)",3,1,talk
+4. The talk,rating,talk_7,"The slides were readable (text size, figures, colours)",4,6,talk
+4. The talk,rating,talk_7,"The slides were readable (text size, figures, colours)",5,4,talk
+4. The talk,rating,talk_7,"The slides were readable (text size, figures, colours)",N/A,0,talk
+4. The talk,rating,talk_8,The pace was right,1,0,talk
+4. The talk,rating,talk_8,The pace was right,2,0,talk
+4. The talk,rating,talk_8,The pace was right,3,1,talk
+4. The talk,rating,talk_8,The pace was right,4,3,talk
+4. The talk,rating,talk_8,The pace was right,5,9,talk
+4. The talk,rating,talk_8,The pace was right,N/A,0,talk
+4. The talk,choice,pace,Pace overall,Too slow,7,pace
+4. The talk,choice,pace,Pace overall,About right,1,pace
+4. The talk,choice,pace,Pace overall,Too fast,6,pace
+4. The talk,choice,level,Level overall,Too basic,5,level
+4. The talk,choice,level,Level overall,About right,6,level
+4. The talk,choice,level,Level overall,Too advanced,3,level
+5. Hands-on session,rating,hands_1,The app loaded and ran without problems on my device,1,0,hands
+5. Hands-on session,rating,hands_1,The app loaded and ran without problems on my device,2,2,hands
+5. Hands-on session,rating,hands_1,The app loaded and ran without problems on my device,3,2,hands
+5. Hands-on session,rating,hands_1,The app loaded and ran without problems on my device,4,4,hands
+5. Hands-on session,rating,hands_1,The app loaded and ran without problems on my device,5,4,hands
+5. Hands-on session,rating,hands_1,The app loaded and ran without problems on my device,N/A,0,hands
+5. Hands-on session,rating,hands_2,The app was easy to use without instructions from the front,1,0,hands
+5. Hands-on session,rating,hands_2,The app was easy to use without instructions from the front,2,1,hands
+5. Hands-on session,rating,hands_2,The app was easy to use without instructions from the front,3,1,hands
+5. Hands-on session,rating,hands_2,The app was easy to use without instructions from the front,4,3,hands
+5. Hands-on session,rating,hands_2,The app was easy to use without instructions from the front,5,6,hands
+5. Hands-on session,rating,hands_2,The app was easy to use without instructions from the front,N/A,0,hands
+5. Hands-on session,rating,hands_3,The worksheet instructions were clear,1,0,hands
+5. Hands-on session,rating,hands_3,The worksheet instructions were clear,2,0,hands
+5. Hands-on session,rating,hands_3,The worksheet instructions were clear,3,3,hands
+5. Hands-on session,rating,hands_3,The worksheet instructions were clear,4,4,hands
+5. Hands-on session,rating,hands_3,The worksheet instructions were clear,5,6,hands
+5. Hands-on session,rating,hands_3,The worksheet instructions were clear,N/A,0,hands
+5. Hands-on session,rating,hands_4,Working in a small group helped,1,0,hands
+5. Hands-on session,rating,hands_4,Working in a small group helped,2,3,hands
+5. Hands-on session,rating,hands_4,Working in a small group helped,3,2,hands
+5. Hands-on session,rating,hands_4,Working in a small group helped,4,3,hands
+5. Hands-on session,rating,hands_4,Working in a small group helped,5,4,hands
+5. Hands-on session,rating,hands_4,Working in a small group helped,N/A,0,hands
+5. Hands-on session,rating,hands_5,The user's manual (web or PDF) was useful,1,0,hands
+5. Hands-on session,rating,hands_5,The user's manual (web or PDF) was useful,2,4,hands
+5. Hands-on session,rating,hands_5,The user's manual (web or PDF) was useful,3,0,hands
+5. Hands-on session,rating,hands_5,The user's manual (web or PDF) was useful,4,4,hands
+5. Hands-on session,rating,hands_5,The user's manual (web or PDF) was useful,5,6,hands
+5. Hands-on session,rating,hands_5,The user's manual (web or PDF) was useful,N/A,0,hands
+5. Hands-on session,grid,act_1,1 · Intensity is not pattern,Too easy,3,act
+5. Hands-on session,grid,act_1,1 · Intensity is not pattern,About right,4,act
+5. Hands-on session,grid,act_1,1 · Intensity is not pattern,Too hard,2,act
+5. Hands-on session,grid,act_1,1 · Intensity is not pattern,Ran out of time,5,act
+5. Hands-on session,grid,act_2,"2 · Regular, random, clustered",Too easy,3,act
+5. Hands-on session,grid,act_2,"2 · Regular, random, clustered",About right,5,act
+5. Hands-on session,grid,act_2,"2 · Regular, random, clustered",Too hard,3,act
+5. Hands-on session,grid,act_2,"2 · Regular, random, clustered",Ran out of time,3,act
+5. Hands-on session,grid,act_3,3 · The three real reefs,Too easy,4,act
+5. Hands-on session,grid,act_3,3 · The three real reefs,About right,5,act
+5. Hands-on session,grid,act_3,3 · The three real reefs,Too hard,2,act
+5. Hands-on session,grid,act_3,3 · The three real reefs,Ran out of time,3,act
+5. Hands-on session,grid,act_4,4 · Pattern vs process,Too easy,4,act
+5. Hands-on session,grid,act_4,4 · Pattern vs process,About right,6,act
+5. Hands-on session,grid,act_4,4 · Pattern vs process,Too hard,3,act
+5. Hands-on session,grid,act_4,4 · Pattern vs process,Ran out of time,1,act
+5. Hands-on session,grid,act_5,5 · Neighbourhood overlap,Too easy,3,act
+5. Hands-on session,grid,act_5,5 · Neighbourhood overlap,About right,5,act
+5. Hands-on session,grid,act_5,5 · Neighbourhood overlap,Too hard,4,act
+5. Hands-on session,grid,act_5,5 · Neighbourhood overlap,Ran out of time,2,act
+5. Hands-on session,grid,act_6,Debrief,Too easy,3,act
+5. Hands-on session,grid,act_6,Debrief,About right,5,act
+5. Hands-on session,grid,act_6,Debrief,Too hard,4,act
+5. Hands-on session,grid,act_6,Debrief,Ran out of time,2,act
+6. Feedback for the presenter,rating,pres_1,"The presenter explained ideas clearly, without unnecessary jargon",1,0,pres
+6. Feedback for the presenter,rating,pres_1,"The presenter explained ideas clearly, without unnecessary jargon",2,0,pres
+6. Feedback for the presenter,rating,pres_1,"The presenter explained ideas clearly, without unnecessary jargon",3,0,pres
+6. Feedback for the presenter,rating,pres_1,"The presenter explained ideas clearly, without unnecessary jargon",4,6,pres
+6. Feedback for the presenter,rating,pres_1,"The presenter explained ideas clearly, without unnecessary jargon",5,5,pres
+6. Feedback for the presenter,rating,pres_1,"The presenter explained ideas clearly, without unnecessary jargon",N/A,0,pres
+6. Feedback for the presenter,rating,pres_2,The presenter used good examples and analogies,1,0,pres
+6. Feedback for the presenter,rating,pres_2,The presenter used good examples and analogies,2,1,pres
+6. Feedback for the presenter,rating,pres_2,The presenter used good examples and analogies,3,3,pres
+6. Feedback for the presenter,rating,pres_2,The presenter used good examples and analogies,4,5,pres
+6. Feedback for the presenter,rating,pres_2,The presenter used good examples and analogies,5,4,pres
+6. Feedback for the presenter,rating,pres_2,The presenter used good examples and analogies,N/A,0,pres
+6. Feedback for the presenter,rating,pres_3,The presenter spoke at a comfortable pace and volume,1,0,pres
+6. Feedback for the presenter,rating,pres_3,The presenter spoke at a comfortable pace and volume,2,4,pres
+6. Feedback for the presenter,rating,pres_3,The presenter spoke at a comfortable pace and volume,3,2,pres
+6. Feedback for the presenter,rating,pres_3,The presenter spoke at a comfortable pace and volume,4,3,pres
+6. Feedback for the presenter,rating,pres_3,The presenter spoke at a comfortable pace and volume,5,4,pres
+6. Feedback for the presenter,rating,pres_3,The presenter spoke at a comfortable pace and volume,N/A,0,pres
+6. Feedback for the presenter,rating,pres_4,The presenter checked for understanding and invited questions,1,0,pres
+6. Feedback for the presenter,rating,pres_4,The presenter checked for understanding and invited questions,2,0,pres
+6. Feedback for the presenter,rating,pres_4,The presenter checked for understanding and invited questions,3,2,pres
+6. Feedback for the presenter,rating,pres_4,The presenter checked for understanding and invited questions,4,2,pres
+6. Feedback for the presenter,rating,pres_4,The presenter checked for understanding and invited questions,5,10,pres
+6. Feedback for the presenter,rating,pres_4,The presenter checked for understanding and invited questions,N/A,0,pres
+6. Feedback for the presenter,rating,pres_5,Questions were answered clearly and respectfully,1,0,pres
+6. Feedback for the presenter,rating,pres_5,Questions were answered clearly and respectfully,2,2,pres
+6. Feedback for the presenter,rating,pres_5,Questions were answered clearly and respectfully,3,3,pres
+6. Feedback for the presenter,rating,pres_5,Questions were answered clearly and respectfully,4,5,pres
+6. Feedback for the presenter,rating,pres_5,Questions were answered clearly and respectfully,5,3,pres
+6. Feedback for the presenter,rating,pres_5,Questions were answered clearly and respectfully,N/A,0,pres
+6. Feedback for the presenter,rating,pres_6,The presenter managed time well across the session,1,0,pres
+6. Feedback for the presenter,rating,pres_6,The presenter managed time well across the session,2,2,pres
+6. Feedback for the presenter,rating,pres_6,The presenter managed time well across the session,3,1,pres
+6. Feedback for the presenter,rating,pres_6,The presenter managed time well across the session,4,4,pres
+6. Feedback for the presenter,rating,pres_6,The presenter managed time well across the session,5,6,pres
+6. Feedback for the presenter,rating,pres_6,The presenter managed time well across the session,N/A,0,pres
+6. Feedback for the presenter,rating,pres_7,I felt comfortable participating,1,0,pres
+6. Feedback for the presenter,rating,pres_7,I felt comfortable participating,2,2,pres
+6. Feedback for the presenter,rating,pres_7,I felt comfortable participating,3,2,pres
+6. Feedback for the presenter,rating,pres_7,I felt comfortable participating,4,3,pres
+6. Feedback for the presenter,rating,pres_7,I felt comfortable participating,5,6,pres
+6. Feedback for the presenter,rating,pres_7,I felt comfortable participating,N/A,0,pres
+7. Recommendations,choice,followup,Which follow-up would interest you?,Building a 3D model from photos (Metashape / Viscore),4,followup
+7. Recommendations,choice,followup,Which follow-up would interest you?,"Annotating and segmenting reef images (e.g. CoralNet, TagLab)",0,followup
+7. Recommendations,choice,followup,Which follow-up would interest you?,Point-pattern analysis in R with your own data (spatstat),2,followup
+7. Recommendations,choice,followup,Which follow-up would interest you?,Field methods: planning and running a large-area imaging survey,5,followup
+7. Recommendations,choice,followup,Which follow-up would interest you?,Using these methods for monitoring or restoration (e.g. outplant spacing),3,followup
+7. Recommendations,choice,followup,Which follow-up would interest you?,Other,14,followup
+7. Recommendations,choice,format,Preferred format next time,Half day,1,format
+7. Recommendations,choice,format,Preferred format next time,Full day,4,format
+7. Recommendations,choice,format,Preferred format next time,Multi-day,0,format
+7. Recommendations,choice,format,Preferred format next time,Online,0,format
+7. Recommendations,choice,format,Preferred format next time,In person,3,format
+7. Recommendations,choice,format,Preferred format next time,Hybrid,6,format
+2. The workshop overall,comment,t_useful,What was the single most useful thing you learned?,"Seeing the same reef as photos, a 3D model and points",,
+2. The workshop overall,comment,t_useful,What was the single most useful thing you learned?,Simulating the four processes myself,,
+2. The workshop overall,comment,t_useful,What was the single most useful thing you learned?,Simulating the four processes myself,,
+2. The workshop overall,comment,t_useful,What was the single most useful thing you learned?,Simulating the four processes myself,,
+2. The workshop overall,comment,t_confusing,What was the least useful or most confusing part?,Difference between K and g,,
+2. The workshop overall,comment,t_confusing,What was the least useful or most confusing part?,Edge correction,,
+2. The workshop overall,comment,t_confusing,What was the least useful or most confusing part?,Edge correction,,
+2. The workshop overall,comment,t_confusing,What was the least useful or most confusing part?,Edge correction,,
+2. The workshop overall,comment,t_confusing,What was the least useful or most confusing part?,Edge correction,,
+5. Hands-on session,comment,t_app_more,What would make the app more useful for your own teaching or research?,Export plots,,
+5. Hands-on session,comment,t_app_more,What would make the app more useful for your own teaching or research?,Export plots,,
+5. Hands-on session,comment,t_app_more,What would make the app more useful for your own teaching or research?,Export plots,,
+5. Hands-on session,comment,t_app_more,What would make the app more useful for your own teaching or research?,Upload my own CSV of points,,
+5. Hands-on session,comment,t_app_more,What would make the app more useful for your own teaching or research?,Upload my own CSV of points,,
+5. Hands-on session,comment,t_app_more,What would make the app more useful for your own teaching or research?,Upload my own CSV of points,,
+6. Feedback for the presenter,comment,t_keep,One thing I should keep doing,Plain-language slides,,
+6. Feedback for the presenter,comment,t_keep,One thing I should keep doing,The opening photo activity,,
+6. Feedback for the presenter,comment,t_keep,One thing I should keep doing,The opening photo activity,,
+6. Feedback for the presenter,comment,t_keep,One thing I should keep doing,The opening photo activity,,
+6. Feedback for the presenter,comment,t_stop,One thing I should stop or do differently,Too many slides in the statistics part,,
+6. Feedback for the presenter,comment,t_stop,One thing I should stop or do differently,Too many slides in the statistics part,,
+6. Feedback for the presenter,comment,t_stop,One thing I should stop or do differently,Too many slides in the statistics part,,
+6. Feedback for the presenter,comment,t_stop,One thing I should stop or do differently,Too many slides in the statistics part,,
+6. Feedback for the presenter,comment,t_stop,One thing I should stop or do differently,Too many slides in the statistics part,,
+6. Feedback for the presenter,comment,t_start,One thing I should start doing,Short breaks between activities,,
+6. Feedback for the presenter,comment,t_start,One thing I should start doing,Short breaks between activities,,
+6. Feedback for the presenter,comment,t_start,One thing I should start doing,Short breaks between activities,,
+6. Feedback for the presenter,comment,t_start,One thing I should start doing,Short breaks between activities,,
+6. Feedback for the presenter,comment,t_start,One thing I should start doing,Short breaks between activities,,
+6. Feedback for the presenter,comment,t_start,One thing I should start doing,Short breaks between activities,,
+6. Feedback for the presenter,comment,t_start,One thing I should start doing,Short breaks between activities,,
+6. Feedback for the presenter,comment,t_start,One thing I should start doing,Short breaks between activities,,
+7. Recommendations,comment,t_change,"If you could change one thing about this workshop, what would it be?",More time for Activity 4,,
+7. Recommendations,comment,t_change,"If you could change one thing about this workshop, what would it be?",More time for Activity 4,,
+7. Recommendations,comment,t_change,"If you could change one thing about this workshop, what would it be?",More time for Activity 4,,
+7. Recommendations,comment,t_change,"If you could change one thing about this workshop, what would it be?",More time for Activity 4,,
+8. Your questions,comment,t_other,Any other comments,"Great workshop, thank you",,
+8. Your questions,comment,t_other,Any other comments,"Great workshop, thank you",,
+8. Your questions,comment,t_other,Any other comments,"Great workshop, thank you",,
+8. Your questions,comment,t_other,Any other comments,"Great workshop, thank you",,
+8. Your questions,comment,t_other,Any other comments,"Great workshop, thank you",,
+8. Your questions,comment,t_other,Any other comments,"Great workshop, thank you",,
+8. Your questions,question,qa,Question,How long does segmenting one plot take?,,1
+8. Your questions,question,qa,Question,Is Viscore available to students?,,1
+8. Your questions,question,qa,Question,How long does segmenting one plot take?,,2
+8. Your questions,question,qa,Question,Can this work for seagrass or salt marsh?,,3
+8. Your questions,reply,qa,Reply,"About 2–3 days per plot by hand; AI tools (CoralNet-Toolbox, TagLab) are cutting that a lot.",,3
+8. Your questions,question,qa,Question,Which camera would you buy today?,,4
+8. Your questions,question,qa,Question,Is Viscore available to students?,,5
+8. Your questions,question,qa,Question,Is Viscore available to students?,,6
+8. Your questions,question,qa,Question,Is Viscore available to students?,,7
+8. Your questions,question,qa,Question,Can this work for seagrass or salt marsh?,,8

@@ -1,0 +1,35 @@
+---
+title: "Workshop feedback & questions"
+subtitle: "SCCS-NY 2026 · *From Photos to Spatial Pattern* · American Museum of Natural History"
+format:
+  html:
+    output-file: feedback.html
+    embed-resources: true
+    theme:
+      light: [cosmo, ../manual-src/manual.scss]
+      dark: [darkly, ../manual-src/manual.scss]
+---
+
+About 10 minutes, **anonymous**, and every question is optional. Ratings are summarised for everyone on the [public summary page](feedback-summary.html); written comments and questions appear there only after review, **never with names**, and sorted alphabetically so nobody can tell who wrote what.
+
+[See what participants said](feedback-summary.html){.btn .btn-primary} [Paper version (PDF)](feedback-form.pdf){.btn .btn-outline-secondary}
+
+```{ojs}
+//| echo: false
+//| output: false
+config = fetch("feedback-config.json", {cache: "no-store"})
+  .then(r => r.ok ? r.json() : ({})).catch(() => ({}))
+```
+
+```{ojs}
+//| echo: false
+{
+  const url = (config.form_embed_url || "").trim();
+  if (!url) return html`<div class="callout callout-style-simple callout-note"><div class="callout-body">
+    The online form opens at the workshop. Until then, please use the
+    <a href="feedback-form.pdf">paper version</a>.</div></div>`;
+  const open = url.replace("?embedded=true", "");
+  return html`<p class="small">Form not showing? <a href="${open}" target="_blank" rel="noopener">Open it in a new tab ↗</a></p>
+    <iframe src="${url}" title="Workshop feedback form" style="width:100%; height:2400px; border:0;" loading="lazy">Loading…</iframe>`;
+}
+```

@@ -11,6 +11,7 @@ Built as a hands-on teaching app for the SCCS-NY 2026 workshop
 
 🔗 **Live demo:** https://jjherlan.github.io/rpn-spatial/
 📖 **User's manual:** [web version](https://jjherlan.github.io/rpn-spatial/manual.html) (also the *User's manual* tab in the app) · [PDF](USER_MANUAL.pdf) · [Markdown](USER_MANUAL.md)  
+💬 **Workshop feedback:** [anonymous form](https://jjherlan.github.io/rpn-spatial/feedback.html) · [name-blind live summary](https://jjherlan.github.io/rpn-spatial/feedback-summary.html) (set-up notes in `feedback-src/README.md`)  
 🎥 **3D models (Viscore fly-throughs):** [Anakena](https://youtu.be/dbPJ7yBsVIc) · [Manavai](https://youtu.be/qbbIMvxGLdo) · [Vaihu](https://youtu.be/OaPMKxSIwd8)
 
 <!-- Add a screenshot once deployed:

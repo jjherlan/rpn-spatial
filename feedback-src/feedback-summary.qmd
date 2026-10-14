@@ -1,0 +1,155 @@
+---
+title: "Workshop feedback: what participants said"
+subtitle: "SCCS-NY 2026 · *From Photos to Spatial Pattern* · American Museum of Natural History"
+format:
+  html:
+    output-file: feedback-summary.html
+    embed-resources: true
+    toc: true
+    toc-location: left
+    toc-title: "Sections"
+    theme:
+      light: [cosmo, ../manual-src/manual.scss]
+      dark: [darkly, ../manual-src/manual.scss]
+    page-layout: full
+---
+
+```{ojs}
+//| echo: false
+//| output: false
+// Everything below runs in the reader's browser each time the page is opened,
+// so the summary is always as current as the published (anonymised) sheet.
+config = fetch("feedback-config.json", {cache: "no-store"})
+  .then(r => r.ok ? r.json() : ({}))
+  .catch(() => ({}))
+```
+
+```{ojs}
+//| echo: false
+//| output: false
+data = {
+  const url = (config.public_csv_url || "").trim();
+  if (url) {
+    try {
+      const rows = await d3.csv(url);
+      if (!rows.length || !("kind" in rows[0])) throw new Error("unexpected sheet layout");
+      return {rows, demo: false};
+    } catch (e) {
+      return {rows: [], demo: false, error: String(e)};
+    }
+  }
+  return {rows: await d3.csv("feedback-demo.csv"), demo: true};
+}
+rows = data.rows.map(d => ({...d, count: d.count === "" ? null : +d.count}))
+meta = Object.fromEntries(rows.filter(d => d.kind === "meta").map(d => [d.code, d.value]))
+nResp = +(meta.n_responses || 0)
+sections = [...new Set(rows.filter(d => d.kind !== "meta").map(d => d.section))]
+```
+
+```{ojs}
+//| echo: false
+status = {
+  if (data.error) return html`<div class="callout callout-style-simple callout-warning"><div class="callout-body">
+    The live summary could not be loaded just now (${data.error}). Please try again in a minute.</div></div>`;
+  if (data.demo) return html`<div class="callout callout-style-simple callout-warning"><div class="callout-body">
+    <b>Preview with made-up example data.</b> The real, anonymous summary appears here once the feedback form is open.</div></div>`;
+  return html`<p class="lead"><b>${nResp}</b> response${nResp === 1 ? "" : "s"} so far · updated ${meta.updated || ""}.
+    Names, emails and individual answers are never shown: ratings are counted per question, and written comments appear
+    only after review, sorted alphabetically.</p>`;
+}
+```
+
+[Give your own feedback](feedback.html){.btn .btn-primary} [Back to the app](index.html){.btn .btn-outline-secondary}
+
+```{ojs}
+//| echo: false
+//| output: false
+likertColors = ({"1": "#b2182b", "2": "#ef8a62", "3": "#cfcfcf", "4": "#67a9cf", "5": "#2166ac", "N/A": "#eeeeee"})
+likertOrder = ["1", "2", "3", "4", "5", "N/A"]
+
+function ratingChart(sec) {
+  const d = rows.filter(r => r.section === sec && r.kind === "rating");
+  if (!d.length) return null;
+  const short = t => t.length > 72 ? t.slice(0, 70) + "…" : t;
+  const labels = [...new Set(d.map(r => r.label))];
+  const stats = labels.map(l => {
+    const v = d.filter(r => r.label === l), num = v.filter(r => r.value !== "N/A");
+    const n = d3.sum(num, r => r.count), tot = d3.sum(v, r => r.count);
+    return {y: short(l), full: l, tot, n, text: n ? `mean ${(d3.sum(num, r => r.count * +r.value) / n).toFixed(1)} · n ${n}` : "no ratings yet"};
+  });
+  const xmax = Math.max(1, d3.max(stats, s => s.tot));
+  return Plot.plot({
+    width: 960, marginLeft: 430, marginRight: 20, height: 34 * labels.length + 60,
+    x: {label: "Number of responses →", grid: true, domain: [0, xmax * 1.32], tickFormat: "d"},
+    y: {label: null, domain: stats.map(s => s.y)},
+    color: {domain: likertOrder, range: likertOrder.map(k => likertColors[k]), legend: true,
+            tickFormat: k => ({"1": "1 strongly disagree", "3": "3 neutral", "5": "5 strongly agree"}[k] || k)},
+    marks: [
+      Plot.barX(d.map(r => ({...r, y: short(r.label)})),
+        Plot.stackX({x: "count", y: "y", fill: "value", order: likertOrder,
+                     title: r => `${r.label}\n${r.value}: ${r.count}`})),
+      Plot.text(stats, {x: "tot", y: "y", text: "text", dx: 6, textAnchor: "start", fontSize: 11, title: "full"}),
+      Plot.ruleX([0])
+    ]
+  });
+}
+
+function choiceCharts(sec) {
+  const d = rows.filter(r => r.section === sec && r.kind === "choice");
+  const codes = [...new Set(d.map(r => r.code))];
+  return codes.map(c => {
+    const dc = d.filter(r => r.code === c);
+    return html`<div class="mb-3"><b>${dc[0].label}</b>${Plot.plot({
+      width: 820, marginLeft: 420, height: 26 * dc.length + 30,
+      x: {label: "Responses", grid: true, tickFormat: "d"},
+      y: {label: null, domain: dc.map(r => r.value), tickFormat: t => t.length > 62 ? t.slice(0, 60) + "…" : t},
+      marks: [Plot.barX(dc, {x: "count", y: "value", fill: "#1b7837"}),
+              Plot.text(dc, {x: "count", y: "value", text: r => r.count ? r.count : "", dx: 10, textAnchor: "start"}),
+              Plot.ruleX([0])]})}</div>`;
+  });
+}
+
+function gridChart(sec) {
+  const d = rows.filter(r => r.section === sec && r.kind === "grid");
+  if (!d.length) return null;
+  const cols = [...new Set(d.map(r => r.value))];
+  return html`<div class="mb-3"><b>How each activity went</b> (participants could tick more than one)${Plot.plot({
+    width: 760, marginLeft: 220, marginTop: 30, height: 34 * new Set(d.map(r => r.label)).size + 50, padding: 0.05,
+    x: {domain: cols, axis: "top", label: null}, y: {label: null},
+    color: {scheme: "greens", legend: false},
+    marks: [Plot.cell(d, {x: "value", y: "label", fill: "count", inset: 1}),
+            Plot.text(d, {x: "value", y: "label", text: r => r.count || "", fill: r => r.count > 4 ? "white" : "black"})]})}</div>`;
+}
+
+function commentList(sec) {
+  const d = rows.filter(r => r.section === sec && r.kind === "comment");
+  if (!d.length) return null;
+  const byQ = d3.groups(d, r => r.label);
+  return html`${byQ.map(([q, cs]) => html`<details class="mb-2"><summary><b>${q}</b> (${cs.length})</summary>
+    <ul>${cs.map(c => html`<li>${c.value}</li>`)}</ul></details>`)}`;
+}
+
+function qaList() {
+  const d = rows.filter(r => r.kind === "question" || r.kind === "reply");
+  if (!d.length) return html`<p><i>No questions published yet.</i></p>`;
+  return html`${d3.groups(d, r => r.group).map(([g, items]) => html`<div class="card mb-2"><div class="card-body">
+    ${items.filter(r => r.kind === "question").map(q => html`<p class="mb-1"><b>Q.</b> ${q.value}</p>`)}
+    ${items.filter(r => r.kind === "reply").map(a => html`<p class="mb-0" style="color:#1b5e3f"><b>A.</b> ${a.value}</p>`)}
+  </div></div>`)}`;
+}
+
+function section(sec) {
+  const parts = sec.startsWith("8.") ? [qaList()]
+    : [ratingChart(sec), ...choiceCharts(sec), gridChart(sec), commentList(sec)].filter(Boolean);
+  return html`<section class="mb-5"><h2 id="${sec.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}">${sec}</h2>${parts}</section>`;
+}
+```
+
+```{ojs}
+//| echo: false
+html`${sections.map(section)}`
+```
+
+::: {.small .text-muted}
+How this page works: participants answer an anonymous Google Form. A script in a private Google Sheet counts the answers per question and publishes only those counts, plus written comments the presenter has approved, to a separate tab that this page reads each time it opens (published sheets refresh about every 5 minutes). The source is in `feedback-src/` of the [repository](https://github.com/jjherlan/rpn-spatial).
+:::
